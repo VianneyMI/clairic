@@ -69,6 +69,6 @@ pythonVersion = "3.10"
 typeCheckingMode = "strict"
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "src"]
 markers = ["live: calls the real Cloudflare API (needs CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN)"]
-addopts = "-m 'not live'"
+addopts = "-m 'not live' --doctest-modules"
