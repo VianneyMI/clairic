@@ -11,7 +11,12 @@ wheels/
 
 # Environment variables
 .env
-# Brainstorm and review notes
-.cursor/brainstorms/
 
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+
+# Local agent notes and skills
+.cursor/brainstorms/
+.cursor/plans/
 .claude/skills/

@@ -1,0 +1,42 @@
+{
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "6a74df57-07d6-4263-8b11-af6d42a36ef4",
+    "CF-RAY": "a502a0c0ba7c803e-CDG"
+  },
+  "request": {
+    "state": "Total $10.",
+    "fields": {
+      "total": {
+        "type": "number"
+      }
+    }
+  },
+  "response": {
+    "result": {
+      "model": "clairic",
+      "answers": {
+        "total": {
+          "type": "number",
+          "p_null": 0.0002948440960608423,
+          "guess": 10,
+          "confidence": 0.9943033370191782,
+          "value": 10
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 5,
+        "image_tokens": 0,
+        "schema_tokens": 110,
+        "input_tokens": 115,
+        "output_tokens": 0,
+        "passes": 1
+      }
+    },
+    "success": true,
+    "errors": [],
+    "messages": []
+  }
+}

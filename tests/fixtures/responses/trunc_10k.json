@@ -1,0 +1,67 @@
+{
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "ebe2d7a6-6173-43e8-a555-ffb120b532dd",
+    "CF-RAY": "a502a184490aa5b5-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "<75828 chars>",
+    "fields": {
+      "first_code": {
+        "type": "text",
+        "instructions": "The first code"
+      },
+      "last_code": {
+        "type": "text",
+        "instructions": "The last code"
+      }
+    },
+    "options": {
+      "return_state_text": true
+    }
+  },
+  "response": {
+    "result": {
+      "model": "clairic",
+      "answers": {
+        "first_code": {
+          "type": "text",
+          "p_null": 1.160401097877184e-05,
+          "span": [
+            32,
+            40
+          ],
+          "guess": "ALPHA-17",
+          "confidence": 0.9992054104804993,
+          "value": "ALPHA-17"
+        },
+        "last_code": {
+          "type": "text",
+          "p_null": 1.5772737242514268e-05,
+          "span": [
+            75819,
+            75827
+          ],
+          "guess": "OMEGA-93",
+          "confidence": 0.9999632835388184,
+          "value": "OMEGA-93"
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 9026,
+        "image_tokens": 0,
+        "schema_tokens": 236,
+        "input_tokens": 18288,
+        "output_tokens": 0,
+        "passes": 2
+      },
+      "state_text": "<75828 chars>"
+    },
+    "success": true,
+    "errors": [],
+    "messages": []
+  }
+}

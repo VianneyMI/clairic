@@ -1,0 +1,29 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "6308fa89-d642-4147-a93c-07a43ee5f576",
+    "CF-RAY": "a502a0ed0fb9c799-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "total": {
+        "type": "number"
+      }
+    },
+    "temperature": 0.2
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: Request body failed validation: temperature: Extra inputs are not permitted (6308fa89-d642-4147-a93c-07a43ee5f576)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

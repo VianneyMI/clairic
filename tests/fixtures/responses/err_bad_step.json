@@ -1,0 +1,31 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "8f927e85-e028-4d8e-8169-1ccdd7f25fd3",
+    "CF-RAY": "a502a0e01931743f-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "x": {
+        "type": "estimate",
+        "min": 0,
+        "max": 10,
+        "step": "week"
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: estimate x: step must be a positive number, got 'week' (8f927e85-e028-4d8e-8169-1ccdd7f25fd3)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

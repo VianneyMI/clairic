@@ -1,0 +1,43 @@
+{
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "21d0233d-a285-4f04-969e-1f63c84d097d",
+    "CF-RAY": "a5029f49a969d0b3-CDG"
+  },
+  "request": {
+    "model": "@cf/cloudflare/clairic",
+    "state": "Total $10.",
+    "fields": {
+      "total": {
+        "type": "number"
+      }
+    }
+  },
+  "response": {
+    "result": {
+      "model": "clairic",
+      "answers": {
+        "total": {
+          "type": "number",
+          "p_null": 0.0002948440960608423,
+          "guess": 10,
+          "confidence": 0.9943033370191782,
+          "value": 10
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 5,
+        "image_tokens": 0,
+        "schema_tokens": 110,
+        "input_tokens": 115,
+        "output_tokens": 0,
+        "passes": 1
+      }
+    },
+    "success": true,
+    "errors": [],
+    "messages": []
+  }
+}

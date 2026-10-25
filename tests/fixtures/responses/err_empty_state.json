@@ -1,0 +1,28 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "75750901-db6e-46fa-8f7b-cc2c92e4036e",
+    "CF-RAY": "a502a0d87fda1dd7-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "",
+    "fields": {
+      "total": {
+        "type": "number"
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: Request body failed validation: state must be non-empty when no images are sent (75750901-db6e-46fa-8f7b-cc2c92e4036e)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

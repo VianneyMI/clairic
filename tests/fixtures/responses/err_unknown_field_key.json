@@ -1,0 +1,29 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "58affb88-2ce0-420e-8162-ce0ee29dc31a",
+    "CF-RAY": "a502a0eb899a0274-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "total": {
+        "type": "number",
+        "colour": "blue"
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: field total has unknown key 'colour'; number fields take type, instructions, unit, null_threshold, integer, decimals (58affb88-2ce0-420e-8162-ce0ee29dc31a)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

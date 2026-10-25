@@ -1,0 +1,28 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "326a6229-41ee-4c41-8078-f76d4d34c58b",
+    "CF-RAY": "a502a0cebd7a02cd-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "to tal": {
+        "type": "number"
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: invalid field name 'to tal' (326a6229-41ee-4c41-8078-f76d4d34c58b)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

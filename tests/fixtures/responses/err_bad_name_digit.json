@@ -1,0 +1,28 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "c0320fcb-f9ef-4291-82fb-68eb84025d34",
+    "CF-RAY": "a502a0cd8a3e7ae7-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "1total": {
+        "type": "number"
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: invalid field name '1total' (c0320fcb-f9ef-4291-82fb-68eb84025d34)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

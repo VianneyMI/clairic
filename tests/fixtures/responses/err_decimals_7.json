@@ -1,0 +1,29 @@
+{
+  "status": 400,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "4e9fe292-2e56-485c-837b-4d8629573f83",
+    "CF-RAY": "a502a0db2cc7d494-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "x": {
+        "type": "number",
+        "decimals": 7
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: Bad input: Error: '/x/decimals' must be <= 6 (4e9fe292-2e56-485c-837b-4d8629573f83)",
+        "code": 5006
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "status": 400,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "767d41d3-0dec-4604-991b-0df9b5b98aa0",
+    "CF-RAY": "a502a0f08b6a2a5c-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "total": {
+        "type": "number",
+        "null_threshold": 0
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: Bad input: Error: '/total/null_threshold' must be > 0 (767d41d3-0dec-4604-991b-0df9b5b98aa0)",
+        "code": 5006
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

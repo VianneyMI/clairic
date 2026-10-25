@@ -1,0 +1,28 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "6ba269cf-c90a-47ea-9f6f-708d34a9c232",
+    "CF-RAY": "a502a0d0d93f58fb-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt": {
+        "type": "number"
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: invalid field name 'ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' (6ba269cf-c90a-47ea-9f6f-708d34a9c232)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

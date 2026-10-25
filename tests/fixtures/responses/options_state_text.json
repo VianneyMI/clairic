@@ -1,0 +1,93 @@
+{
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "88afe26d-2e2a-4e99-b8a2-dcd81dead4b8",
+    "CF-RAY": "a5029f4799c7d87e-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "  Invoice   INV-9   total $10.  ",
+    "fields": {
+      "invoice.number": {
+        "type": "text"
+      },
+      "total-usd": {
+        "type": "number"
+      },
+      "po": {
+        "type": "text",
+        "null_threshold": 0.999999,
+        "instructions": "Purchase order number"
+      },
+      "po_strict": {
+        "type": "text",
+        "null_threshold": 0.01,
+        "instructions": "Invoice number"
+      }
+    },
+    "options": {
+      "return_state_text": true
+    }
+  },
+  "response": {
+    "result": {
+      "model": "clairic",
+      "answers": {
+        "invoice.number": {
+          "type": "text",
+          "p_null": 0.0012405809247866273,
+          "span": [
+            12,
+            17
+          ],
+          "guess": "INV-9",
+          "confidence": 0.9999991655349731,
+          "value": "INV-9"
+        },
+        "total-usd": {
+          "type": "number",
+          "p_null": 0.11725785583257675,
+          "guess": 10,
+          "confidence": 0.883769606479079,
+          "value": 10
+        },
+        "po": {
+          "type": "text",
+          "p_null": 0.9997339844703674,
+          "span": [
+            12,
+            17
+          ],
+          "guess": "INV-9",
+          "confidence": 0.9633628129959106,
+          "value": "INV-9"
+        },
+        "po_strict": {
+          "type": "text",
+          "p_null": 0.008373584598302841,
+          "span": [
+            12,
+            17
+          ],
+          "guess": "INV-9",
+          "confidence": 0.9999922513961792,
+          "value": "INV-9"
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 13,
+        "image_tokens": 0,
+        "schema_tokens": 460,
+        "input_tokens": 512,
+        "output_tokens": 0,
+        "passes": 4
+      },
+      "state_text": "  Invoice   INV-9   total $10.  "
+    },
+    "success": true,
+    "errors": [],
+    "messages": []
+  }
+}

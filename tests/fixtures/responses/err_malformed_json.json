@@ -1,0 +1,19 @@
+{
+  "status": 400,
+  "headers": {
+    "Content-Type": "application/json",
+    "CF-RAY": "a502a0eacdab531b-CDG"
+  },
+  "request": "<raw 30 bytes>",
+  "response": {
+    "errors": [
+      {
+        "message": "Request body is not valid json",
+        "code": 6003
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

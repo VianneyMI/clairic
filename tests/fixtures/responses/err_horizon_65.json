@@ -1,0 +1,31 @@
+{
+  "status": 400,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "058757e9-da46-40af-9275-2b3b74cd2cba",
+    "CF-RAY": "a502a0deda3d2a7b-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "x": {
+        "type": "forecast",
+        "horizon": 65,
+        "min": 0,
+        "max": 10
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: Bad input: Error: '/x/horizon' must be <= 64 (058757e9-da46-40af-9275-2b3b74cd2cba)",
+        "code": 5006
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

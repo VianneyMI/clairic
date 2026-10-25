@@ -1,0 +1,31 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "9e213907-d8f9-4928-9da3-04c6803dcc7e",
+    "CF-RAY": "a502a0ee2c50d09a-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "total": {
+        "type": "number"
+      }
+    },
+    "options": {
+      "verbose": true
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: Request body failed validation: options.verbose: Extra inputs are not permitted (9e213907-d8f9-4928-9da3-04c6803dcc7e)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

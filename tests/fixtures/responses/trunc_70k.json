@@ -1,0 +1,36 @@
+{
+  "status": 413,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "f68b22b1-5247-4f87-8143-5a15d23b0686",
+    "CF-RAY": "a502a29b5854d0b2-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "<587772 chars>",
+    "fields": {
+      "first_code": {
+        "type": "text",
+        "instructions": "The first code"
+      },
+      "last_code": {
+        "type": "text",
+        "instructions": "The last code"
+      }
+    },
+    "options": {
+      "return_state_text": true
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: Ai: The estimated number of input and maximum output tokens (146999) exceeded this model context window limit (65536). (f68b22b1-5247-4f87-8143-5a15d23b0686)",
+        "code": 5021
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}
