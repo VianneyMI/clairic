@@ -1,0 +1,28 @@
+{
+  "status": 400,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "d0719202-89c7-4fb7-8bed-1794dffa0b92",
+    "CF-RAY": "a502a0c388337848-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "x": {
+        "type": "money"
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: Bad input: Error: enum money not in text,number,date,time,datetime,duration,list,estimate,forecast at '/x/type' (d0719202-89c7-4fb7-8bed-1794dffa0b92)",
+        "code": 5006
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

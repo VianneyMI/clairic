@@ -1,0 +1,30 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "dd0edda8-a12e-45ea-914f-3776a8e27408",
+    "CF-RAY": "a502a0ef69971b44-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "total": {
+        "type": "text",
+        "decimals": 2,
+        "min": 0
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: field total: text fields don't take 'decimals' (dd0edda8-a12e-45ea-914f-3776a8e27408)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

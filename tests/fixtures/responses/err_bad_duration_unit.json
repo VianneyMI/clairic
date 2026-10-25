@@ -1,0 +1,29 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "e5148cb1-315d-449f-9f0a-a5527c870710",
+    "CF-RAY": "a502a0e619680371-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "x": {
+        "type": "duration",
+        "unit": "fortnights"
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: duration x needs a unit in ('seconds', 'minutes', 'hours', 'days', 'weeks', 'months', 'years') (e5148cb1-315d-449f-9f0a-a5527c870710)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

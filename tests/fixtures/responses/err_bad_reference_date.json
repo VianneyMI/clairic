@@ -1,0 +1,29 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "d82433eb-2ac3-4289-abd5-ec540c80eeee",
+    "CF-RAY": "a502a0e77dd00084-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "total": {
+        "type": "number"
+      }
+    },
+    "reference_date": "03/09/2026"
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: reference_date must be an ISO date, got '03/09/2026' (d82433eb-2ac3-4289-abd5-ec540c80eeee)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

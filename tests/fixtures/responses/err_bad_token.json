@@ -1,0 +1,27 @@
+{
+  "status": 401,
+  "headers": {
+    "Content-Type": "application/json",
+    "CF-RAY": "a502a0bcad2debac-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "total": {
+        "type": "number"
+      }
+    }
+  },
+  "response": {
+    "result": null,
+    "success": false,
+    "errors": [
+      {
+        "code": 10000,
+        "message": "Authentication error"
+      }
+    ],
+    "messages": []
+  }
+}

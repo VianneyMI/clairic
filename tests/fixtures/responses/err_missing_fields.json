@@ -1,0 +1,23 @@
+{
+  "status": 400,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "8e29098e-63e5-4d92-aa90-ae5eb3a64c5c",
+    "CF-RAY": "a502a0bf2c9f701a-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10."
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: Bad input: Error: required properties at '/' are 'model,fields' (8e29098e-63e5-4d92-aa90-ae5eb3a64c5c)",
+        "code": 5006
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

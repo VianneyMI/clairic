@@ -1,0 +1,28 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "50f75699-45fe-4727-8f55-cc3425c72572",
+    "CF-RAY": "a502a0c49eb1d6e2-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "x": {
+        "type": "list"
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: list x needs items in ('text', 'number', 'date') (50f75699-45fe-4727-8f55-cc3425c72572)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

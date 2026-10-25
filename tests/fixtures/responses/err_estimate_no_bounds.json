@@ -1,0 +1,28 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "1a8b591e-6585-4893-a189-3b341c5582f9",
+    "CF-RAY": "a502a0c69da12bd3-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "x": {
+        "type": "estimate"
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: estimate x needs numeric min and max (1a8b591e-6585-4893-a189-3b341c5582f9)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

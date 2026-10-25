@@ -1,0 +1,49 @@
+{
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "6993632d-a208-41f2-a8e7-142763dc4131",
+    "CF-RAY": "a502a181ce85d913-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Founded in 1998, the firm grew steadily.",
+    "fields": {
+      "next_ipo": {
+        "type": "estimate",
+        "min": "2026-01-01",
+        "max": "2040-01-01",
+        "step": "year",
+        "instructions": "Year of a likely IPO"
+      }
+    },
+    "reference_date": "2026-10-25"
+  },
+  "response": {
+    "result": {
+      "model": "clairic",
+      "answers": {
+        "next_ipo": {
+          "type": "estimate",
+          "value": "2029-01-01",
+          "mean": "2029-01-01",
+          "median": "2029-01-01",
+          "p10": "2027-01-01",
+          "p90": "2034-01-01"
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 13,
+        "image_tokens": 0,
+        "schema_tokens": 195,
+        "input_tokens": 208,
+        "output_tokens": 0,
+        "passes": 1
+      }
+    },
+    "success": true,
+    "errors": [],
+    "messages": []
+  }
+}

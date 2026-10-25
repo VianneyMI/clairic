@@ -1,0 +1,139 @@
+{
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "9d64f362-a068-44f5-9bc3-d5669b29289a",
+    "CF-RAY": "a5029f3dc821bb68-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Thanks for the quick reply, all good on my side.",
+    "fields": {
+      "order_id": {
+        "type": "text",
+        "instructions": "Order number"
+      },
+      "amount": {
+        "type": "number",
+        "decimals": 2,
+        "instructions": "Amount paid"
+      },
+      "delivery_date": {
+        "type": "date",
+        "instructions": "Delivery date"
+      },
+      "delivery_time": {
+        "type": "time",
+        "instructions": "Delivery time"
+      },
+      "meeting": {
+        "type": "datetime",
+        "instructions": "Meeting date and time"
+      },
+      "wait": {
+        "type": "duration",
+        "unit": "minutes",
+        "instructions": "Waiting time"
+      },
+      "damage": {
+        "type": "list",
+        "items": "text",
+        "instructions": "Each kind of damage"
+      },
+      "quantities": {
+        "type": "list",
+        "items": "number",
+        "instructions": "Quantities ordered"
+      },
+      "dates": {
+        "type": "list",
+        "items": "date",
+        "instructions": "Delivery dates"
+      }
+    }
+  },
+  "response": {
+    "result": {
+      "model": "clairic",
+      "answers": {
+        "order_id": {
+          "type": "text",
+          "p_null": 0.9999881982803345,
+          "span": [
+            32,
+            36
+          ],
+          "guess": "good",
+          "confidence": 0.4486343562602997,
+          "value": null
+        },
+        "amount": {
+          "type": "number",
+          "p_null": 0.9999980926513672,
+          "guess": 8,
+          "confidence": 0.005498562511406842,
+          "value": null
+        },
+        "delivery_date": {
+          "type": "date",
+          "p_null": 0.9999258518218994,
+          "guess": "2027-11-04",
+          "confidence": 0.0020957674376179606,
+          "value": null
+        },
+        "delivery_time": {
+          "type": "time",
+          "p_null": 0.9985406398773193,
+          "guess": "20:50:00",
+          "confidence": 0.0056097701056893505,
+          "value": null
+        },
+        "meeting": {
+          "type": "datetime",
+          "p_null": 0.9997876286506653,
+          "guess": "2026-11-01T19:50:00",
+          "confidence": 9.561686729059674e-06,
+          "value": null
+        },
+        "wait": {
+          "type": "duration",
+          "p_null": 0.999993085861206,
+          "unit": "minutes",
+          "guess": 0,
+          "confidence": 0.38242113078031115,
+          "value": null
+        },
+        "damage": {
+          "type": "list",
+          "value": [],
+          "spans": [],
+          "confidence": 1
+        },
+        "quantities": {
+          "type": "list",
+          "value": [],
+          "confidences": [],
+          "confidence": 0.9999886751174927
+        },
+        "dates": {
+          "type": "list",
+          "value": [],
+          "confidences": [],
+          "confidence": 0.9999219179153442
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 12,
+        "image_tokens": 0,
+        "schema_tokens": 633,
+        "input_tokens": 657,
+        "output_tokens": 0,
+        "passes": 2
+      }
+    },
+    "success": true,
+    "errors": [],
+    "messages": []
+  }
+}

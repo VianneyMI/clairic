@@ -1,0 +1,28 @@
+{
+  "status": 400,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "db4bf529-aa90-428e-b379-9eefc869e05c",
+    "CF-RAY": "a502a0c29aa3d15e-CDG"
+  },
+  "request": {
+    "model": "gpt",
+    "state": "Total $10.",
+    "fields": {
+      "total": {
+        "type": "number"
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: Bad input: Error: '/model' failed test ^(clairic|@cf/cloudflare/clairic)$ patttern (db4bf529-aa90-428e-b379-9eefc869e05c)",
+        "code": 5006
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

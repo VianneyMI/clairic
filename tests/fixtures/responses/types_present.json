@@ -1,0 +1,193 @@
+{
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "a54d3779-4c2a-4e49-be31-214f47eb16b3",
+    "CF-RAY": "a5029f3b5ae78a38-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "From: Maya Chen <maya@example.com>\nSent: Tuesday, March 3, 2026 9:14 AM\nSubject: Damaged order #A-55120\n\nHi, my order #A-55120 was delivered on Feb 20 at 4:30 PM. I paid $129.99 plus 8% tax. The lid is cracked and one hinge is bent. The courier left it outside for about 3 hours in the rain. Our meeting is booked for 2026-03-05T14:00:00. Order quantities: 2 chairs, 1 table, 4 cushions. Other deliveries arrived on 2026-01-12 and 2026-02-02.\n",
+    "fields": {
+      "order_id": {
+        "type": "text",
+        "instructions": "Order number"
+      },
+      "amount_with_tax": {
+        "type": "number",
+        "decimals": 2,
+        "unit": "USD",
+        "instructions": "Total paid including tax"
+      },
+      "item_count": {
+        "type": "number",
+        "integer": true,
+        "instructions": "Total number of items ordered"
+      },
+      "delivery_date": {
+        "type": "date",
+        "instructions": "Date the order was delivered"
+      },
+      "delivery_time": {
+        "type": "time",
+        "instructions": "Time of day the order was delivered"
+      },
+      "meeting": {
+        "type": "datetime",
+        "instructions": "When the meeting is booked"
+      },
+      "rain_exposure": {
+        "type": "duration",
+        "unit": "hours",
+        "instructions": "How long the parcel sat outside"
+      },
+      "days_since_delivery": {
+        "type": "duration",
+        "unit": "days",
+        "integer": true,
+        "instructions": "Days from delivery to the date the customer wrote"
+      },
+      "damage": {
+        "type": "list",
+        "items": "text",
+        "instructions": "Each kind of damage described"
+      },
+      "quantities": {
+        "type": "list",
+        "items": "number",
+        "instructions": "Quantities of each product ordered"
+      },
+      "other_deliveries": {
+        "type": "list",
+        "items": "date",
+        "instructions": "Dates of other deliveries"
+      }
+    },
+    "reference_date": "2026-03-03"
+  },
+  "response": {
+    "result": {
+      "model": "clairic",
+      "answers": {
+        "order_id": {
+          "type": "text",
+          "p_null": 0.0019447115482762456,
+          "span": [
+            118,
+            126
+          ],
+          "guess": "#A-55120",
+          "confidence": 0.999885082244873,
+          "value": "#A-55120"
+        },
+        "amount_with_tax": {
+          "type": "number",
+          "p_null": 3.5578023016569205e-07,
+          "guess": 140.39,
+          "confidence": 0.9989597705578852,
+          "value": 140.39
+        },
+        "item_count": {
+          "type": "number",
+          "p_null": 4.137498166301157e-08,
+          "guess": 7,
+          "confidence": 0.9998187145752869,
+          "value": 7
+        },
+        "delivery_date": {
+          "type": "date",
+          "p_null": 1.444568397346302e-06,
+          "guess": "2026-02-20",
+          "confidence": 0.9999986886995842,
+          "value": "2026-02-20"
+        },
+        "delivery_time": {
+          "type": "time",
+          "p_null": 1.7139790697839885e-09,
+          "guess": "16:30:00",
+          "confidence": 0.9999973774024795,
+          "value": "16:30:00"
+        },
+        "meeting": {
+          "type": "datetime",
+          "p_null": 6.7145258242362615e-09,
+          "guess": "2026-03-05T14:00:00",
+          "confidence": 0.9999990463265931,
+          "value": "2026-03-05T14:00:00"
+        },
+        "rain_exposure": {
+          "type": "duration",
+          "p_null": 4.419167817104608e-05,
+          "unit": "hours",
+          "guess": 3,
+          "confidence": 0.9991839887272189,
+          "value": 3
+        },
+        "days_since_delivery": {
+          "type": "duration",
+          "p_null": 3.540374393651291e-07,
+          "unit": "days",
+          "guess": 11,
+          "confidence": 0.9256396303269288,
+          "value": 11
+        },
+        "damage": {
+          "type": "list",
+          "value": [
+            "lid",
+            "one hinge is bent"
+          ],
+          "spans": [
+            [
+              195,
+              198
+            ],
+            [
+              214,
+              231
+            ]
+          ],
+          "confidence": 0.23394100522950179
+        },
+        "quantities": {
+          "type": "list",
+          "value": [
+            2,
+            1,
+            4
+          ],
+          "confidences": [
+            0.9999953508539718,
+            0.999287134706292,
+            0.9999197785239547
+          ],
+          "confidence": 0.9991779143191255
+        },
+        "other_deliveries": {
+          "type": "list",
+          "value": [
+            "2026-01-12",
+            "2026-02-02"
+          ],
+          "confidences": [
+            0.9999974966097582,
+            0.9999990463265931
+          ],
+          "confidence": 0.999956433335256
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 180,
+        "image_tokens": 0,
+        "schema_tokens": 797,
+        "input_tokens": 1157,
+        "output_tokens": 0,
+        "passes": 2
+      }
+    },
+    "success": true,
+    "errors": [],
+    "messages": []
+  }
+}

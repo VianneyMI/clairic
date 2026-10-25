@@ -1,0 +1,28 @@
+{
+  "status": 400,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "ceb64541-0fd5-4569-82bb-39c52b2ce9c3",
+    "CF-RAY": "a502a0e95fe26eea-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": 42,
+    "fields": {
+      "total": {
+        "type": "number"
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: Bad input: Error: Type mismatch of '/state', 'string' not in 'number','integer' (ceb64541-0fd5-4569-82bb-39c52b2ce9c3)",
+        "code": 5006
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}

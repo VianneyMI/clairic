@@ -1,0 +1,30 @@
+{
+  "status": 422,
+  "headers": {
+    "Content-Type": "application/json",
+    "cf-ai-req-id": "c7156771-77ed-426d-9778-810255876bd6",
+    "CF-RAY": "a502a0cc5d6d556d-CDG"
+  },
+  "request": {
+    "model": "clairic",
+    "state": "Total $10.",
+    "fields": {
+      "x": {
+        "type": "estimate",
+        "min": 10,
+        "max": 5
+      }
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "AiError: AiError: estimate x needs finite min < max, got 10 and 5 (c7156771-77ed-426d-9778-810255876bd6)",
+        "code": 3030
+      }
+    ],
+    "success": false,
+    "result": {},
+    "messages": []
+  }
+}
