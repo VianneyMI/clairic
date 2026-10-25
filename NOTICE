@@ -1,0 +1,18 @@
+clairic is an unofficial project. It is not affiliated with, endorsed by, or
+supported by Cloudflare, Inc. "Cloudflare", "Workers AI" and "Clairic" are
+names of Cloudflare, Inc. products.
+
+Docstrings in this package adapt text from the Cloudflare documentation,
+which Cloudflare publishes under the Creative Commons Attribution 4.0
+International license (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/).
+The adapted text was edited for length and context. Sources:
+
+- Clairic model reference
+  https://developers.cloudflare.com/workers-ai/models/clairic/
+- Clairic input and output JSON schemas
+  https://developers.cloudflare.com/workers-ai/models/clairic/schema-input.json
+  https://developers.cloudflare.com/workers-ai/models/clairic/schema-output.json
+- Extraction models concepts
+  https://developers.cloudflare.com/workers-ai/concepts/extraction-models/
+- "Clairic" launch post, The Cloudflare Blog
+  https://blog.cloudflare.com/clairic-extraction-model/
