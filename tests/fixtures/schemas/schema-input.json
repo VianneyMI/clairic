@@ -1,0 +1,169 @@
+{
+  "properties": {
+    "fields": {
+      "additionalProperties": {
+        "properties": {
+          "decimals": {
+            "description": "Numbers, durations and number lists only.",
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "horizon": {
+            "description": "Forecast only: number of steps.",
+            "maximum": 64,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "instructions": {
+            "description": "What the field should contain.",
+            "type": "string"
+          },
+          "integer": {
+            "description": "Numbers and durations only.",
+            "type": "boolean"
+          },
+          "interval": {
+            "description": "Forecast only.",
+            "enum": [
+              "step",
+              "minute",
+              "hour",
+              "day",
+              "week",
+              "month",
+              "quarter",
+              "year"
+            ],
+            "type": "string"
+          },
+          "items": {
+            "description": "Required for list fields.",
+            "enum": [
+              "text",
+              "number",
+              "date"
+            ],
+            "type": "string"
+          },
+          "max": {
+            "description": "Required for estimate/forecast: a number, or an ISO date for date estimates."
+          },
+          "min": {
+            "description": "Required for estimate/forecast: a number, or an ISO date for date estimates."
+          },
+          "null_threshold": {
+            "description": "Probability of null above which the value is null (default 0.5).",
+            "exclusiveMinimum": 0,
+            "maximum": 1,
+            "type": "number"
+          },
+          "scale": {
+            "default": "linear",
+            "enum": [
+              "linear",
+              "log"
+            ],
+            "type": "string"
+          },
+          "step": {
+            "description": "Estimate grid: a positive number (days for date estimates), or \"month\" / \"year\"."
+          },
+          "type": {
+            "enum": [
+              "text",
+              "number",
+              "date",
+              "time",
+              "datetime",
+              "duration",
+              "list",
+              "estimate",
+              "forecast"
+            ],
+            "type": "string"
+          },
+          "unit": {
+            "description": "Unit label. For durations, one of seconds, minutes, hours, days, weeks, months, years (default seconds).",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "type": "object"
+      },
+      "description": "Required. Map of field name to a typed field spec. At least one field; no upper limit. Fields that do not fit next to the state in one 8,192-token pass are split across parallel passes.",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_.\\-]{0,63}$"
+      },
+      "type": "object"
+    },
+    "images": {
+      "description": "Optional embedded PNG, JPEG or WebP images placed before the state (max 4; 4 MiB each, 8 MiB total decoded; request body max 16 MiB). Remote URLs are not accepted.",
+      "items": {
+        "anyOf": [
+          {
+            "pattern": "^[Dd][Aa][Tt][Aa]:",
+            "title": "Data URL",
+            "type": "string"
+          },
+          {
+            "properties": {
+              "base64": {
+                "type": "string"
+              },
+              "content_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "content_type",
+              "base64"
+            ],
+            "title": "Base64 image",
+            "type": "object"
+          }
+        ]
+      },
+      "maxItems": 4,
+      "type": "array"
+    },
+    "model": {
+      "default": "clairic",
+      "description": "Required. The model selector: \"clairic\".",
+      "pattern": "^(clairic|@cf/cloudflare/clairic)$",
+      "type": "string"
+    },
+    "options": {
+      "properties": {
+        "include_quantiles": {
+          "default": false,
+          "description": "Add 99 percentiles to estimates.",
+          "type": "boolean"
+        },
+        "return_state_text": {
+          "default": false,
+          "description": "Return the text that spans index into.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "reference_date": {
+      "description": "ISO date that anchors dates written without a year.",
+      "type": "string"
+    },
+    "state": {
+      "default": "",
+      "description": "The text to read and predict from. Must be non-empty unless images are sent. Text answers are spans of this string.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "model",
+    "fields"
+  ],
+  "type": "object"
+}

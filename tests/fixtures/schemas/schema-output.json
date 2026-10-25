@@ -1,0 +1,104 @@
+{
+  "contentType": "application/json",
+  "properties": {
+    "answers": {
+      "additionalProperties": {
+        "properties": {
+          "confidence": {
+            "type": "number"
+          },
+          "guess": {},
+          "mean": {},
+          "median": {},
+          "p10": {},
+          "p90": {},
+          "p_above": {
+            "type": "number"
+          },
+          "p_below": {
+            "type": "number"
+          },
+          "p_null": {
+            "type": "number"
+          },
+          "quantiles": {
+            "type": "array"
+          },
+          "span": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "spans": {
+            "items": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "steps": {
+            "description": "Forecast only: one estimate per step.",
+            "type": "array"
+          },
+          "type": {
+            "type": "string"
+          },
+          "value": {}
+        },
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object"
+      },
+      "description": "One answer per field, keyed by field name. value is null when the input does not determine it.",
+      "type": "object"
+    },
+    "model": {
+      "type": "string"
+    },
+    "state_text": {
+      "type": "string"
+    },
+    "truncated": {
+      "type": "boolean"
+    },
+    "usage": {
+      "properties": {
+        "image_tokens": {
+          "type": "integer"
+        },
+        "input_tokens": {
+          "type": "integer"
+        },
+        "output_tokens": {
+          "type": "integer"
+        },
+        "passes": {
+          "type": "integer"
+        },
+        "schema_tokens": {
+          "type": "integer"
+        },
+        "state_tokens": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "model",
+    "answers",
+    "truncated",
+    "usage"
+  ],
+  "type": "object"
+}
