@@ -29,6 +29,12 @@ dependencies = [
     "typing-extensions>=4.12",
 ]
 
+[project.urls]
+Homepage = "https://github.com/VianneyMI/clairic"
+Repository = "https://github.com/VianneyMI/clairic"
+Issues = "https://github.com/VianneyMI/clairic/issues"
+"Clairic model reference" = "https://developers.cloudflare.com/workers-ai/models/clairic/"
+
 [dependency-groups]
 dev = [
     "anyio>=4.4",
