@@ -11,6 +11,7 @@ from typing import Annotated
 from pydantic import BaseModel
 from typing_extensions import assert_type
 
+from clairic import AsyncClairic, Clairic
 from clairic.answers import (
     DateEstimateAnswer,
     DurationAnswer,
@@ -68,3 +69,14 @@ def check_result(result: Result[Extraction]) -> None:
     assert_type(result.data.total.value, float | None)
     assert_type(result.values_as(Values), Values)
     assert_type(result.usage.input_tokens, int)
+
+
+def check_clients(clairic: Clairic, async_clairic: AsyncClairic) -> None:
+    result = clairic.extract("text", Extraction)
+    assert_type(result, Result[Extraction])
+    assert_type(result.data.days_to_pay.p10, int)
+
+
+async def check_async_client(async_clairic: AsyncClairic) -> None:
+    result = await async_clairic.extract("text", Extraction)
+    assert_type(result, Result[Extraction])

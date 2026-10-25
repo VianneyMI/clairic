@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "clairic"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Unofficial typed Python SDK for Cloudflare's Clairic extraction model, built on Pydantic."
 readme = "README.md"
 authors = [{ name = "Vianney Mixtur", email = "vianney@consio.ai" }]
@@ -37,6 +37,9 @@ dev = [
     "python-dotenv>=1.0",
     "ruff>=0.8",
 ]
+
+[tool.hatch.version]
+path = "src/clairic/_version.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/clairic"]

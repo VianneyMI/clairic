@@ -43,6 +43,8 @@ class APIError(ClairicError):
             Cloudflare error code, such as 3030 for a request the model rejects.
         request_id: str | None
             Workers AI request id (`cf-ai-req-id` header), to quote when contacting Cloudflare.
+            `None` when Cloudflare rejects the request before it reaches Workers AI, as with
+            authentication errors and malformed bodies.
     """
 
     def __init__(
