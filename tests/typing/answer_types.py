@@ -22,6 +22,7 @@ from clairic.answers import (
     TextAnswer,
     TextListAnswer,
 )
+from clairic.result import Result
 from clairic.specs import Estimate, Forecast
 
 
@@ -56,3 +57,14 @@ def check(data: Extraction) -> None:
     _ = data.sale.p_below  # pyright: ignore
     _ = data.dates.spans  # pyright: ignore
     _ = data.invoice_numbr  # pyright: ignore
+
+
+class Values(BaseModel):
+    total: float | None
+
+
+def check_result(result: Result[Extraction]) -> None:
+    assert_type(result.data, Extraction)
+    assert_type(result.data.total.value, float | None)
+    assert_type(result.values_as(Values), Values)
+    assert_type(result.usage.input_tokens, int)
