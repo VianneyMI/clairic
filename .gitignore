@@ -11,3 +11,7 @@ wheels/
 
 # Environment variables
 .env
+# Brainstorm and review notes
+.cursor/brainstorms/
+
+.claude/skills/
