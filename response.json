@@ -1,0 +1,83 @@
+{
+    "result": {
+        "model": "clairic",
+        "answers": {
+            "invoice_number": {
+                "type": "text",
+                "p_null": 5.542365670407889e-06,
+                "span": [
+                    8,
+                    16
+                ],
+                "guess": "INV-2291",
+                "confidence": 0.9999814033508301,
+                "value": "INV-2291"
+            },
+            "due_date": {
+                "type": "date",
+                "p_null": 9.57318320615741e-07,
+                "guess": "2026-10-02",
+                "confidence": 0.9999649532931155,
+                "value": "2026-10-02"
+            },
+            "total": {
+                "type": "number",
+                "p_null": 5.512222855941218e-07,
+                "guess": 1080,
+                "confidence": 0.9999504107534636,
+                "value": 1080
+            },
+            "contacts": {
+                "type": "list",
+                "value": [
+                    "Dana Ruiz",
+                    "Priya Shah"
+                ],
+                "spans": [
+                    [
+                        120,
+                        129
+                    ],
+                    [
+                        131,
+                        141
+                    ]
+                ],
+                "confidence": 0.9998327756466797
+            },
+            "po_number": {
+                "type": "text",
+                "p_null": 0.9999994039535522,
+                "span": [
+                    8,
+                    16
+                ],
+                "guess": "INV-2291",
+                "confidence": 0.9992349147796631,
+                "value": null
+            },
+            "days_to_pay": {
+                "type": "estimate",
+                "value": 31,
+                "mean": 30.936103609225793,
+                "median": 31,
+                "p10": 24,
+                "p90": 37,
+                "p_below": 2.312706328666536e-06,
+                "p_above": 5.760749445471447e-06
+            }
+        },
+        "truncated": false,
+        "usage": {
+            "state_tokens": 61,
+            "image_tokens": 0,
+            "schema_tokens": 472,
+            "input_tokens": 655,
+            "output_tokens": 0,
+            "passes": 3
+        }
+    },
+    "success": true,
+    "errors": [],
+    "messages": []
+}

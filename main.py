@@ -1,15 +1,21 @@
 
+import json
 import os
+
 import requests
+from dotenv import load_dotenv
 
+load_dotenv()
+ACCOUNT_ID = os.environ.get("ACCOUNT_ID")
+AUTH_TOKEN = os.environ.get("CLOUDFLARE_AUTH_TOKEN")
 
+print(f"ACCOUNT_ID: {ACCOUNT_ID}")
+print(f"AUTH_TOKEN: {AUTH_TOKEN}")
 
 def main():
     print("Hello from system-one-extract!")
 
 
-    ACCOUNT_ID = "your-account-id"
-    AUTH_TOKEN = os.environ.get("CLOUDFLARE_AUTH_TOKEN")
 
     response = requests.post(
         f"https://api.cloudflare.com/client/v4/accounts/{ACCOUNT_ID}/ai/run/@cf/cloudflare/clairic",
@@ -42,6 +48,8 @@ def main():
         },
     )
     print(response.json())
+    with open("response.json", "w") as f:
+        json.dump(response.json(), f)
 
 
 if __name__ == "__main__":
