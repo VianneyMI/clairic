@@ -1,0 +1,55 @@
+{
+  "data": {
+    "name": {
+      "p_null": 1.2041025001963135e-05,
+      "confidence": 1.0,
+      "type": "text",
+      "value": "John Doe",
+      "guess": "John Doe",
+      "span": [
+        0,
+        8
+      ]
+    },
+    "age": {
+      "p_null": 4.0205594409314926e-10,
+      "confidence": 1.0,
+      "type": "number",
+      "value": 25,
+      "guess": 25
+    },
+    "phone_number": {
+      "p_null": 9.293087350670248e-05,
+      "confidence": 1.0,
+      "type": "text",
+      "value": "+33 6 12 34 56 78",
+      "guess": "+33 6 12 34 56 78",
+      "span": [
+        66,
+        83
+      ]
+    },
+    "email_address": {
+      "p_null": 0.6562634110450745,
+      "confidence": 0.9984922409057617,
+      "type": "text",
+      "value": null,
+      "guess": "firstname.name@gmail.com",
+      "span": [
+        90,
+        114
+      ]
+    }
+  },
+  "usage": {
+    "state_tokens": 41,
+    "image_tokens": 0,
+    "schema_tokens": 448,
+    "input_tokens": 612,
+    "output_tokens": 0,
+    "passes": 4
+  },
+  "truncated": false,
+  "model": "clairic",
+  "request_id": "a9d04bb0-d1b3-4b9f-958d-60b7fc6e9e22"
+}
