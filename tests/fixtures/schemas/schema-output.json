@@ -3,13 +3,52 @@
   "properties": {
     "answers": {
       "additionalProperties": {
+        "additionalProperties": true,
         "properties": {
+          "complete": {
+            "description": "Generated answers: whether generation terminated normally.",
+            "type": "boolean"
+          },
           "confidence": {
+            "description": "Generated answers: probability of the returned value (including a null value); 0 when invalid. Typed answers: probability of guess.",
             "type": "number"
           },
-          "guess": {},
+          "confidence_method": {
+            "type": "string"
+          },
+          "confidences": {
+            "description": "Lists: confidence per item.",
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "decoder": {
+            "description": "Generated answers: decoder that produced the value, e.g. parallel-ar-json-scalar-v1 or native_source_scalar_v1.",
+            "type": "string"
+          },
+          "failure_reason": {
+            "description": "Why an answer is invalid, e.g. not_in_source.",
+            "type": "string"
+          },
+          "grounding_method": {
+            "type": "string"
+          },
+          "guess": {
+            "description": "Typed answers only: the best non-null candidate, returned even when value is null."
+          },
+          "log_probability": {
+            "description": "Generated answers: log probability of the generated sequence. Present only when valid.",
+            "type": "number"
+          },
           "mean": {},
           "median": {},
+          "normalization_method": {
+            "type": "string"
+          },
+          "null_recovered": {
+            "type": "boolean"
+          },
           "p10": {},
           "p90": {},
           "p_above": {
@@ -21,21 +60,74 @@
           "p_null": {
             "type": "number"
           },
-          "quantiles": {
-            "type": "array"
+          "p_null_method": {
+            "type": "string"
           },
-          "span": {
+          "p_nulls": {
+            "description": "Lists: null probability per item.",
             "items": {
-              "type": "integer"
+              "type": "number"
             },
             "type": "array"
           },
+          "printed_value": {
+            "description": "source_only fields: the text as printed in the input.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "property_spans": {
+            "description": "Object lists read from tables: per row, a map of property name to span or null.",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "quantiles": {
+            "type": "array"
+          },
+          "raw": {
+            "description": "Generated answers: the raw generated JSON.",
+            "type": "string"
+          },
+          "retry_input_tokens": {
+            "description": "Input tokens spent on retries for this field.",
+            "type": "integer"
+          },
+          "source": {
+            "enum": [
+              "input",
+              "image",
+              "readout"
+            ],
+            "type": "string"
+          },
+          "span": {
+            "description": "[start, end] character offsets into state, or null when the value has no unique match in the input.",
+            "items": {
+              "type": "integer"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "span_method": {
+            "type": "string"
+          },
           "spans": {
+            "description": "Lists: one span or null per item.",
             "items": {
               "items": {
                 "type": "integer"
               },
-              "type": "array"
+              "type": [
+                "array",
+                "null"
+              ]
             },
             "type": "array"
           },
@@ -43,8 +135,20 @@
             "description": "Forecast only: one estimate per step.",
             "type": "array"
           },
+          "tokens": {
+            "description": "Generated answers: completion tokens, including retries.",
+            "type": "integer"
+          },
           "type": {
             "type": "string"
+          },
+          "unit": {
+            "description": "Duration only.",
+            "type": "string"
+          },
+          "valid": {
+            "description": "Generated answers: whether the output satisfied the field's schema. value is null when false.",
+            "type": "boolean"
           },
           "value": {}
         },
@@ -54,16 +158,18 @@
         ],
         "type": "object"
       },
-      "description": "One answer per field, keyed by field name. value is null when the input does not determine it.",
+      "description": "One answer per field, keyed by field name. value is null when the input does not determine it. Generated answers (text, number, boolean, enum, object, source_only fields, lists) carry valid/complete/decoder metadata; typed answers (date, time, datetime, duration, compute) carry guess instead.",
       "type": "object"
     },
     "model": {
+      "description": "Always \"clairic-27b\", whichever selector was sent.",
       "type": "string"
     },
     "state_text": {
       "type": "string"
     },
     "truncated": {
+      "description": "True when any generated answer or list is invalid or incomplete. Input is never truncated.",
       "type": "boolean"
     },
     "usage": {
@@ -72,12 +178,15 @@
           "type": "integer"
         },
         "input_tokens": {
+          "description": "All prompt tokens, including retries.",
           "type": "integer"
         },
         "output_tokens": {
+          "description": "All generated tokens.",
           "type": "integer"
         },
         "passes": {
+          "description": "Sequential decode steps.",
           "type": "integer"
         },
         "schema_tokens": {
