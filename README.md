@@ -240,6 +240,12 @@ uv run pytest -m live                         # real API, needs credentials
 uv run python scripts/check_schema_drift.py   # compare Cloudflare's schemas with the vendored ones
 ```
 
+Cloudflare does not announce Clairic schema changes while the model is in preview. The
+`Clairic schema drift` workflow checks every Monday. When the published schemas change, it opens an
+issue labelled `schema-drift` with a summary of the changes, and a pull request from the
+`schema-drift/update` branch with the new copies in `tests/fixtures/schemas/`. Push the SDK changes
+to that branch; merging the pull request closes the issue.
+
 ## License and attribution
 
 MIT. clairic is a community project, independent from Cloudflare. Docstrings adapt text from

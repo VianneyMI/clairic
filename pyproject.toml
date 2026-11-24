@@ -76,8 +76,10 @@ convention = "google"
 include = ["src", "tests", "scripts", "examples"]
 pythonVersion = "3.10"
 typeCheckingMode = "strict"
+extraPaths = ["scripts"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests", "src"]
+pythonpath = ["scripts"]
 markers = ["live: calls the real Cloudflare API (needs CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN)"]
 addopts = "-m 'not live' --doctest-modules"
