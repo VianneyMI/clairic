@@ -1,9 +1,28 @@
 name: Clairic schema drift
 
+# Cloudflare does not announce Clairic schema changes, so this compares the published schemas
+# with the copies in tests/fixtures/schemas every week. When they differ, it:
+#   1. writes a summary of the changes on the run page,
+#   2. pushes the new copies to the schema-drift/update branch and opens a pull request,
+#   3. opens an issue (or comments on the open one) with the same summary.
+# Push the SDK changes to that branch; merging the pull request closes the issue.
+
 on:
   schedule:
     - cron: "0 6 * * 1"
   workflow_dispatch:
+
+permissions:
+  contents: write # push the schema-drift/update branch
+  pull-requests: write # open or update the pull request
+  issues: write # open or comment on the issue
+
+concurrency:
+  group: schema-drift
+
+env:
+  BRANCH: schema-drift/update
+  LABEL: schema-drift
 
 jobs:
   drift:
@@ -12,4 +31,103 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
       - run: uv sync --locked
-      - run: uv run python scripts/check_schema_drift.py
+
+      - name: Compare the published schemas with the vendored copies
+        id: check
+        run: |
+          uv run python scripts/check_schema_drift.py --update --report "$RUNNER_TEMP/report.md"
+          cat "$RUNNER_TEMP/report.md" >> "$GITHUB_STEP_SUMMARY"
+          if git diff --quiet -- tests/fixtures/schemas; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            mkdir "$RUNNER_TEMP/published"
+            cp tests/fixtures/schemas/*.json "$RUNNER_TEMP/published/"
+            git checkout -- tests/fixtures/schemas
+          fi
+
+      - name: Push the new schemas to the drift branch
+        id: push
+        if: steps.check.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+
+          pr=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number // empty')
+          echo "pr=$pr" >> "$GITHUB_OUTPUT"
+          if [ -n "$pr" ]; then
+            # The open pull request may already hold SDK fixes: add to it, never replace it.
+            git fetch --depth=1 origin "$BRANCH"
+            git switch -c "$BRANCH" FETCH_HEAD
+          else
+            git switch -c "$BRANCH"
+          fi
+
+          cp "$RUNNER_TEMP"/published/*.json tests/fixtures/schemas/
+          if git diff --quiet -- tests/fixtures/schemas; then
+            echo "new=false" >> "$GITHUB_OUTPUT"
+            echo "Already reported in #$pr; nothing new since." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          echo "new=true" >> "$GITHUB_OUTPUT"
+          git add tests/fixtures/schemas
+          git commit -m "Update the vendored Clairic schemas ($(date -u +%F))"
+          if [ -n "$pr" ]; then
+            git push origin "$BRANCH"
+          else
+            # No open pull request: a leftover branch from an earlier round is stale.
+            git push --force origin "$BRANCH"
+          fi
+
+      - name: Open or update the issue and the pull request
+        if: steps.push.outputs.new == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ steps.push.outputs.pr }}
+          BASE: ${{ github.event.repository.default_branch }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          COMPARE_URL: ${{ github.server_url }}/${{ github.repository }}/compare
+        run: |
+          report="$RUNNER_TEMP/report.md"
+          today=$(date -u +%F)
+          gh label create "$LABEL" --color fbca04 \
+            --description "Cloudflare changed the published Clairic schemas" 2>/dev/null || true
+
+          issue=$(gh issue list --label "$LABEL" --state open --json number --jq '.[0].number // empty')
+          if [ -n "$issue" ]; then
+            { echo "Cloudflare changed the schemas again ($today, [run]($RUN_URL))."; echo; cat "$report"; } \
+              > "$RUNNER_TEMP/comment.md"
+            gh issue comment "$issue" --body-file "$RUNNER_TEMP/comment.md"
+          else
+            { echo "Found by the scheduled schema drift check on $today ([run]($RUN_URL))."; echo; cat "$report"; } \
+              > "$RUNNER_TEMP/issue.md"
+            url=$(gh issue create --title "Cloudflare changed the Clairic schemas" \
+              --label "$LABEL" --label preview-api --body-file "$RUNNER_TEMP/issue.md")
+            issue=${url##*/}
+          fi
+
+          {
+            echo "Closes #$issue."
+            echo
+            echo "This branch holds Cloudflare's new schemas. Before merging:"
+            echo
+            echo "- [ ] Update the answer models and specs in \`src/clairic/\` to match"
+            echo "- [ ] Fix docstrings and the README where the meaning changed"
+            echo "- [ ] Push those changes to \`$BRANCH\`"
+            echo
+            echo "CI does not run on the workflow's own commit; it runs once you push to this branch."
+            echo
+            cat "$report"
+          } > "$RUNNER_TEMP/pr.md"
+
+          if [ -n "$PR" ]; then
+            gh pr edit "$PR" --body-file "$RUNNER_TEMP/pr.md"
+            gh pr comment "$PR" --body "Cloudflare changed the schemas again ($today). This branch now has the latest copies; the description shows every change since \`$BASE\`."
+          elif ! gh pr create --head "$BRANCH" --base "$BASE" --label "$LABEL" \
+              --title "Update the vendored Clairic schemas ($today)" --body-file "$RUNNER_TEMP/pr.md"; then
+            msg="Could not open the pull request. Allow it under Settings > Actions > General > Workflow permissions > Allow GitHub Actions to create and approve pull requests."
+            echo "::warning::$msg"
+            gh issue comment "$issue" --body "The new schemas are on \`$BRANCH\`, but the workflow could not open a pull request: [open it here]($COMPARE_URL/$BASE...$BRANCH?expand=1). $msg"
+          fi
