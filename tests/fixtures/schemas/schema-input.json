@@ -1,13 +1,59 @@
 {
   "properties": {
+    "documents": {
+      "description": "Optional embedded PDFs (4 MiB each). Rendered pages plus images must total at most 4. Encrypted PDFs are rejected.",
+      "items": {
+        "anyOf": [
+          {
+            "pattern": "^[Dd][Aa][Tt][Aa]:[Aa][Pp][Pp][Ll][Ii][Cc][Aa][Tt][Ii][Oo][Nn]/[Pp][Dd][Ff];[Bb][Aa][Ss][Ee]64,",
+            "title": "Data URL",
+            "type": "string"
+          },
+          {
+            "properties": {
+              "base64": {
+                "type": "string"
+              },
+              "content_type": {
+                "enum": [
+                  "application/pdf"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "content_type",
+              "base64"
+            ],
+            "title": "Base64 PDF",
+            "type": "object"
+          }
+        ]
+      },
+      "maxItems": 4,
+      "type": "array"
+    },
     "fields": {
       "additionalProperties": {
         "properties": {
           "decimals": {
-            "description": "Numbers, durations and number lists only.",
+            "description": "number, compute, duration and number lists only. Values are rounded half-up.",
             "maximum": 6,
             "minimum": 0,
             "type": "integer"
+          },
+          "enum": {
+            "description": "Allowed values. Required for enum fields; optional for text, number and list fields.",
+            "minItems": 1,
+            "type": "array"
+          },
+          "exclusiveMaximum": {
+            "description": "number only.",
+            "type": "number"
+          },
+          "exclusiveMinimum": {
+            "description": "number only.",
+            "type": "number"
           },
           "horizon": {
             "description": "Forecast only: number of steps.",
@@ -20,7 +66,7 @@
             "type": "string"
           },
           "integer": {
-            "description": "Numbers and durations only.",
+            "description": "number, compute, duration and number lists only.",
             "type": "boolean"
           },
           "interval": {
@@ -38,45 +84,139 @@
             "type": "string"
           },
           "items": {
-            "description": "Required for list fields.",
-            "enum": [
-              "text",
-              "number",
-              "date"
+            "anyOf": [
+              {
+                "enum": [
+                  "text",
+                  "number",
+                  "date"
+                ],
+                "type": "string"
+              },
+              {
+                "properties": {
+                  "properties": {
+                    "minProperties": 1,
+                    "type": "object"
+                  },
+                  "type": {
+                    "enum": [
+                      "object"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "type",
+                  "properties"
+                ],
+                "title": "Object item",
+                "type": "object"
+              }
             ],
-            "type": "string"
+            "description": "Required for list fields: \"text\", \"number\", \"date\", or an object item spec."
+          },
+          "knowledge": {
+            "default": false,
+            "description": "text, number, and text/number lists only. Allows answers from prior knowledge that do not appear in the input. Not combinable with source_only.",
+            "type": "boolean"
           },
           "max": {
             "description": "Required for estimate/forecast: a number, or an ISO date for date estimates."
           },
+          "maxLength": {
+            "description": "text only.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "max_items": {
+            "description": "List only. Maximum number of items to return.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "maximum": {
+            "description": "number only.",
+            "type": "number"
+          },
           "min": {
             "description": "Required for estimate/forecast: a number, or an ISO date for date estimates."
           },
+          "minLength": {
+            "description": "text only.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "minimum": {
+            "description": "number only.",
+            "type": "number"
+          },
           "null_threshold": {
-            "description": "Probability of null above which the value is null (default 0.5).",
+            "description": "compute, date, time, datetime and duration only. Probability of null above which the value is null (default 0.5).",
             "exclusiveMinimum": 0,
             "maximum": 1,
             "type": "number"
           },
+          "nullable": {
+            "default": true,
+            "description": "When false, text, number, boolean, enum and object answers cannot be null. compute requires true.",
+            "type": "boolean"
+          },
+          "pattern": {
+            "description": "text only. Regular expression the answer must match.",
+            "type": "string"
+          },
+          "properties": {
+            "additionalProperties": {
+              "properties": {
+                "type": {
+                  "enum": [
+                    "text",
+                    "number",
+                    "boolean",
+                    "enum"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "type": "object"
+            },
+            "description": "Required for object fields and object list items. Map of property name to a spec whose type is text, number, boolean or enum.",
+            "minProperties": 1,
+            "propertyNames": {
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.\\-]{0,63}$"
+            },
+            "type": "object"
+          },
           "scale": {
-            "default": "linear",
             "enum": [
               "linear",
               "log"
             ],
             "type": "string"
           },
+          "source_only": {
+            "description": "number, date, time, datetime, and number/date lists only. The answer must be printed in the input and is normalized from the printed text. Not combinable with null_threshold or knowledge.",
+            "type": "boolean"
+          },
           "step": {
             "description": "Estimate grid: a positive number (days for date estimates), or \"month\" / \"year\"."
           },
           "type": {
+            "description": "compute: a number derived from the input. boolean, enum, object: generated answers constrained to that shape.",
             "enum": [
               "text",
               "number",
+              "compute",
               "date",
               "time",
               "datetime",
               "duration",
+              "boolean",
+              "enum",
+              "object",
               "list",
               "estimate",
               "forecast"
@@ -84,7 +224,7 @@
             "type": "string"
           },
           "unit": {
-            "description": "Unit label. For durations, one of seconds, minutes, hours, days, weeks, months, years (default seconds).",
+            "description": "number, compute, duration, list, estimate, forecast. For durations, one of seconds, minutes, hours, days, weeks, months, years (default seconds).",
             "type": "string"
           }
         },
@@ -93,7 +233,7 @@
         ],
         "type": "object"
       },
-      "description": "Required. Map of field name to a typed field spec. At least one field; no upper limit. Fields that do not fit next to the state in one 8,192-token pass are split across parallel passes.",
+      "description": "Required. Map of field name to a typed field spec. At least one field; no upper limit. Each prompt (state plus fields) must fit in 65,273 input tokens; input is never truncated and oversized requests are rejected. Unknown keys for a field's type are rejected.",
       "minProperties": 1,
       "propertyNames": {
         "pattern": "^[A-Za-z_][A-Za-z0-9_.\\-]{0,63}$"
@@ -101,7 +241,7 @@
       "type": "object"
     },
     "images": {
-      "description": "Optional embedded PNG, JPEG or WebP images placed before the state (max 4; 4 MiB each, 8 MiB total decoded; request body max 16 MiB). Remote URLs are not accepted.",
+      "description": "Optional embedded PNG, JPEG or WebP images placed before the state (max 4; 4 MiB each, 8 MiB total decoded across images and documents; request body max 16 MiB). Remote URLs are not accepted.",
       "items": {
         "anyOf": [
           {
@@ -116,6 +256,16 @@
               },
               "content_type": {
                 "type": "string"
+              },
+              "rotation": {
+                "description": "Clockwise rotation to apply. Orientation is detected automatically when omitted.",
+                "enum": [
+                  0,
+                  90,
+                  180,
+                  270
+                ],
+                "type": "integer"
               }
             },
             "required": [
@@ -132,7 +282,7 @@
     },
     "model": {
       "default": "clairic",
-      "description": "Required. The model selector: \"clairic\".",
+      "description": "Required. The model selector: \"clairic\"",
       "pattern": "^(clairic|@cf/cloudflare/clairic)$",
       "type": "string"
     },
@@ -157,7 +307,7 @@
     },
     "state": {
       "default": "",
-      "description": "The text to read and predict from. Must be non-empty unless images are sent. Text answers are spans of this string.",
+      "description": "The text to read and predict from. Must be non-empty unless images or documents are sent. Text answers are spans of this string.",
       "type": "string"
     }
   },
